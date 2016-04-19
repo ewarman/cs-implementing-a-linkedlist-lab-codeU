@@ -85,32 +85,7 @@ public class MyLinkedList<E> implements List<E> {
 
 	@Override
 	public void add(int index, E element) {
-	    if (index < 0 || index > size) {
-		throw new UnsupportedOperationException("Invalid index");
-	    }
-	    Node current = head;
-	    Node previous = null;
-	    if (index == 0) {
-	       head = new Node(element);
-	       head.next = current;
-	    }
-	    else {
-		if (current!=null) {
-		    for (int i = 0; i<index; i++) {
-			previous = current;
-			current = current.next;
-		    }
-		}
-	    
-		//System.out.println("Previous: "+previous.cargo);
-		//System.out.println("New: "+element);
-		//System.out.println("Next: "+current.cargo);
-		Node newNode = new Node(element);
-		previous.next = newNode;
-		newNode.next = current;
-	    }
-	    size++;
-	
+	    //TODO
 	}
 
 	@Override
@@ -171,13 +146,18 @@ public class MyLinkedList<E> implements List<E> {
 
 	@Override
 	public int indexOf(Object target) {
+	    System.out.println("Target: "+target);
+	    int cnt = 0;
 	    Node node = head;
-	    for (int i=0; i<size; i++) {
-		if (equals(target, node.cargo)) {
-		    return i;
+	    for (; node.next != null; node = node.next) {
+		System.out.println(node.cargo);
+		if (target.equals(node.cargo)) {
+		    System.out.println("Returned: "+cnt);
+		    return cnt;
 		}
-		node = node.next;
+		cnt++;
 	    }
+	    System.out.println("Returned: -1");
 	    return -1;
 	}
 
@@ -232,56 +212,14 @@ public class MyLinkedList<E> implements List<E> {
 
 	@Override
 	public boolean remove(Object obj) {
-	    Node current = head;
-	    Node previous = head;
-	    if (head != null) {
-		for (int i = 0; i<size; i++) {
-		    if (i==0) {
-			if (equals(obj,head.cargo)) {
-			    if (head.next != null) {
-				head = head.next;
-			    }
-			    else {head = null;}
-			    size--;
-			    return true;
-			}
-		    }
-		    else {
-			if (equals(obj,current.cargo)) {
-			    previous.next = current.next;
-			    size--;
-			    return true;
-			}
-		    }
-		    previous = current;
-		    current = current.next;
-		}
-	    }
-	    return false;
+		// TODO: fill this in
+		return false;
 	}
-	    
 
 	@Override
 	public E remove(int index) {
-	    if (index < 1 || index > size) {
+		// TODO: fill this in
 		return null;
-	    }
-	    Node current = head;
-	    Node previous = null;
-	    if (head!=null){
-		for (int i = 0; i<index; i++){
-		    if (current.next == null) {
-			return null;
-		    }
-		    previous = current;
-		    current = current.next;
-		}
-		E element = current.cargo;
-		previous.next = current.next;
-		size--;
-		return element;
-	    }
-	    return null;
 	}
 
 	@Override
